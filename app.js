@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const port = process.env.PORT
-const host = process.env.URL
+// const port = process.env.PORT
+// const host = process.env.URL
+
+const port = 3000
+const host = '127.0.0.1'
 
 const createError = require('http-errors');
 
@@ -17,15 +20,16 @@ app.set('view engine', 'ejs')
 const indexRouter = require('./src/routes/index');
 
 app.use('/', indexRouter);
-
+//image
+app.use(express.static("public"));
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-    console.log("error",err)
+app.use(function (err, req, res, next) {
+    console.log("error", err)
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

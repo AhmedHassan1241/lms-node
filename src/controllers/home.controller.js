@@ -1,9 +1,9 @@
 require('dotenv').config();
 
 const methods = {
-    async getCourses(req, res){
+    async getHome(req, res) {
         try {
-            res.render("faculty/list.ejs", {faculty : []})
+            res.render("index.ejs")
         } catch (error) {
             res.error(error.message, error.status)
         }

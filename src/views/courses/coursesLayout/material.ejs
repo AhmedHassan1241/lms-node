@@ -1,0 +1,39 @@
+<% const colleges=[{title:'Applied Arts',img:'/images/Arts.png'},
+{title:'Applied Health Sciences Technology',img:'/images/Health.png'},
+{title:'Dentistry',img:'/images/Dentistry.png'},{title:'Economics & Management',img:'/images/Economics.png'},
+{title:'Engineering',img:'/images/Engineering.png'},
+{title:'Faculty of Nursing',img:'/images/Nursing.png'},
+{title:'Info. Systems & Comp. Science',img:'/images/InfoSys.png'},
+{title:'Languages &Translation',img:'/images/Languages.png'},
+{title:'Media & Mass Comm',img:'/images/Media.png'},
+{title:'Medicine',img:'/images/Medicine.png'},
+{title:'Pharmacy',img:'/images/Pharmacy.png'},
+{title:'Physical Therapy', img:'/images/Physical.png'},
+{title:'Postgraduate Studies', img:'/images/Postgraduate.png'},
+{title:'Tourism and Hotels',img:'/images/Tourism.png'}]%>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% colleges.forEach((col) => { %>
+  <!-- card -->
+  <div class="col">
+    <div class="card h-100">
+      <img src="<%= col.img %>" class="card-img-top" alt="Palm Springs Road" />
+      <div class="card-body">
+        <h5 class="card-title"><%= col.title %></h5>
+      </div>
+    </div>
+  </div>
+  <!-- card -->
+  <% }) %>
+</div>
+<!-- ,{title:'Dentistry',img:'/images/Dentistrypng'},{title:'Economics
+& Management',img:'/images/Economics & Management.png'},
+{title:'Engineering',img:'/images/Engineering.png'},{title:'Faculty of Nursing',
+img:'/images/Facultof Nursing.png'},{title:'Info. Systems & Comp. Science',
+img:'/images/Info.Systems & Comp. Science.png'},{title:'Languages &
+Translation',img:'/images/Languages & Translation.png'},{title:'Media & Mass
+Comm',img:'/images/Media & Mass
+Comm.png'},{title:'Medicine',img:'/images/Medicine.png'}{title:'Pharmacy',img:'/images/Pharmacy.png'}{title:'Physical
+Therapy', img:'/images/PhysicalTherapy.png'}{title:'Postgraduate Studies',
+img:'/images/PostgraduatStudies.png'}{title:'Tourism and Hotels',
+img:'/images/Tourism and Hotels.png'} -->

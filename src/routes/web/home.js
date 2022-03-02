@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const faculty_controller = require('../../controllers/faculty.controller')
+const home_controller = require('../../controllers/home.controller')
 
-router.get('/', faculty_controller.getCourses);
+router.get('/', home_controller.getHome);
 // router.post('/users', template_controller.saveUser);
 
 module.exports = router;
