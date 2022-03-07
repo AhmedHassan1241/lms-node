@@ -1,5 +1,6 @@
 const Service = require("../services/users.service");
 const { Validator } = require("node-input-validator");
+var session = require("express-session");
 require("dotenv").config();
 
 const methods = {
@@ -24,8 +25,10 @@ const methods = {
 
       // let result =  await Service.getUsers()
       // console.log("res", result)
-      res.render("users/student.ejs", { users: [] });
+
+      res.render("users/student.ejs", { currentUser: req.session.user });
     } catch (error) {
+      console.log(error.message);
       res.error(error.message, error.status);
     }
   },

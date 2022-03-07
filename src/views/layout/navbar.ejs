@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- Container wrapper -->
-  <div class="container-fluid">
+  <div class="container-fluid" style="display: flex; gap: 20px">
     <!-- Toggle button -->
     <button
       class="navbar-toggler"
@@ -70,12 +70,16 @@
             <!-- parts -->
           </ul>
         </li>
+        <% if(currentUser){ %>
         <li class="nav-item">
           <a class="nav-link" href="/courses">Courses</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="/user">Student</a>
         </li>
+        <% } %>
+
         <!-- Navbar dropdown -->
         <li class="nav-item dropdown">
           <a
@@ -109,12 +113,29 @@
       <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
-      <!----------------- Icon Login----------------------------- -->
+    <!-- email -->
+    <% if (currentUser){%>
+    <h5><%= currentUser.name %></h5>
+    <% } %>
+    <!-- email -->
+    <!-- logout -->
+    <% if(currentUser){ %>
+    <a href="/logout" class="me-4 text-reset">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </a>
+    <% } %>
+
+    <!-- logout -->
+
+    <!-- login -->
+    <% if( !currentUser){ %>
 
     <a href="/login" class="me-4 text-reset">
       <i class="fa-solid fa-user"></i>
     </a>
-    <!-- -------------------------------------------------------- -->
+    <% } %>
+
+    <!-- login -->
   </div>
   <!-- Container wrapper -->
 </nav>

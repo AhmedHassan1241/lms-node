@@ -1,12 +1,16 @@
-const sharp = require('sharp');
-const fs = require('fs')
-const User = require("../../models/user")
+const sharp = require("sharp");
+const fs = require("fs");
+const models = require("../../models/index");
 
 const methods = {
-    async getUsers() {
-        const users = await User.findAll();
-        return users;
-    }
-}
+  async getUsers() {
+    const users = await models.User.findAll();
+    // var highGPA = users.filter(user => {
+    //     return user.gpa >
+    // })
+    console.log(users);
+    return users;
+  },
+};
 
-module.exports = { ...methods }
+module.exports = { ...methods };

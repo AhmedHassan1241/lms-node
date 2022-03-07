@@ -1,13 +1,24 @@
-require('dotenv').config();
-
+require("dotenv").config();
+var session = require("express-session");
+var users = require("../../models/");
 const methods = {
-    async getHome(req, res) {
-        try {
-            res.render("index.ejs")
-        } catch (error) {
-            res.error(error.message, error.status)
-        }
-    }
-}
+  async getHome(req, res) {
+    try {
+      // var userinfo = { userName: '', loggedin: false };
+      // if (req.session.user && req.cookies.user_sid) {
+      //     userinfo.loggedin = true;
+      //     userinfo.userName = req.session.user.email;
+      //     // console.log(JSON.stringify(req.session.user));
+      //     // console.log(req.session.user.email);
+      //     // res.render('index.ejs', userinfo);
 
-module.exports = { ...methods }
+      // }
+
+      res.render("index.ejs", { currentUser: req.session.user });
+    } catch (error) {
+      res.error(error.message, error.status);
+    }
+  },
+};
+
+module.exports = { ...methods };
