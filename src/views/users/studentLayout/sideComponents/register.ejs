@@ -1,6 +1,8 @@
 <div id="page-content-wrapper">
   <div class="container-fluid">
-    <form action="/registeration" method="get">
+    <% if(!checkR) { %>
+    <form action="/registeration" method="post">
+      <!-- loop for matrials -->
       <table class="table align-middle">
         <thead>
           <tr>
@@ -11,36 +13,58 @@
           </tr>
         </thead>
 
+      <!--  -->
         <tbody>
-          <% showMaterials.map((m)=>{ %>
+          <% showMaterials.forEach(function (n,index) { %>
+
           <tr>
-            <td><% var mname =m.materialName %> <%= m.materialName %></td>
-            <td><%= m.code %></td>
-            <td><%= m.level %></td>
-            <td><%= m.hours %></td>
+            <td><% const mnames = [n.materialName] %> <%= n.materialName %></td>
+            <td><%= n.code %></td>
+            <td><%= n.level %></td>
+            <td><%= n.hours %></td>
 
             <td>
               <div class="form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"
-                  value="<%= mname %>"
+                  value="<%= mnames %>"
                   id="flexCheckDefault"
-                  name="checked"
+                  name="<%= `m${index}` %>"
                 />
               </div>
             </td>
           </tr>
           <% }) %>
         </tbody>
+      <!--  -->
       </table>
-      <input
-        class="btn btn-dark"
-        type="submit"
-        value="Register"
-        name="register"
-      />
+
+      <input class="btn btn-dark" type="submit" value="Register" />
     </form>
+    <% } %>
+      <!-- new------------------------------------------------------> 
+    <% if(checkR) { %> 
+    <table class="table align-middle"> 
+      <thead> 
+        <tr> 
+          <th scope="col">Course Name</th> 
+        </tr> 
+      </thead> 
+ 
+      <tbody> 
+        <% checked.map(function (course) { %> 
+          <% if(course !== '') { %> 
+        <tr> 
+          <td><%= course %></td> 
+        </tr> 
+        <% } %> 
+        <% }) %> 
+      </tbody> 
+    </table> 
+    <% } %> 
+ 
+    <!-- new---------------------------------------------------------> 
     <!-- /#page-content-wrapper -->
   </div>
 </div>
