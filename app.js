@@ -3,6 +3,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+const passport = require('passport')
 
 // const db = require('./models');
 //new
@@ -13,6 +14,8 @@ require("dotenv").config();
 // const host = process.env.URL
 const port = 3000;
 const host = "127.0.0.1";
+
+// Need to require the entire Passport config module so app.js knows about it
 
 //new
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +37,17 @@ const createError = require("http-errors");
 
 app.set("views", __dirname + "/src/views");
 app.set("view engine", "ejs");
+
+
+/**
+ * -------------- PASSPORT AUTHENTICATION ----------------
+ */
+require('./config/passport')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 //new
 app.use((req, res, next) => {

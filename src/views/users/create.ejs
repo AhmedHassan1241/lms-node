@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="/style.css"/>
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
+    <title>o6u</title>
+    <!-- css -->
+    <%- include('../../bootstrab/syles.ejs') %>
+</head>
+<body>
+<header><%- include('../layout/navbar.ejs') %></header>
+<main>
+    <div id="wrapper" class="toggled">
+        <div class="iconToggle" id="iconToggle">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        </div>
+        <%- include('../layout/side-bar.ejs') %>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8">
+                <form action="/users/save" method="post">
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Email</label>
+                        <input name="email" type="email" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="inputPassword4">
+                    </div>
+
+                    <div class="col-12 pt-10">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- JS -->
+<%- include('../../bootstrab/js.ejs') %>
+<%- include('../../bootstrab/scripts.ejs') %>
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 router.use("/", require("./home"));
-router.use("/user", require("./users"));
+router.use("/users", require("./users"));
 router.use("/courses", require("./courses"));
 router.use("/registeration", require("./register"));
 router.use("/tables", require("./tables"));

@@ -28,12 +28,12 @@ async function getRegister(req, res) {
       }
       // console.log(coursesRegistered)
       //new
-      res.render("users/studentLayout/RegisterationPage.ejs", {
-        currentUser: req.session.user,
-        showMaterials: getMatrials,
-        checkR: checkRegistration,
-        checked: coursesRegistered,
-      });
+      // res.render("users/studentLayout/RegisterationPage.ejs", {
+      //   currentUser: req.session.user,
+      //   showMaterials: getMatrials,
+      //   checkR: checkRegistration,
+      //   checked: coursesRegistered,
+      // });
     } else {
       res.redirect("/");
     }
@@ -64,8 +64,10 @@ async function postRegister(req, res) {
           a0 + "," + a1 + "," + a2 + "," + a3 + "," + a4 + "," + a5;
         var handelData = dataRegister.replace(/undefined/g, "");
 
-          if (a0 || a1 || a2 || a3 || a4 || a5) {
-              await db.registration.create({ uid: req.session.user.uid, courses: handelData }).then(function (data) {
+        if (a0 || a1 || a2 || a3 || a4 || a5) {
+          await db.registration
+            .create({ uid: req.session.user.uid, courses: handelData })
+            .then(function (data) {
               res.send("Added successfully");
             });
         }
