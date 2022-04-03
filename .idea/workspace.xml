@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d871df-3bf8-4184-999d-0c2d10b72c3f" name="Changes" comment="update .gitignore">
-      <change afterPath="$PROJECT_DIR$/src/controllers/logout.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/middlewares/auth.js" afterDir="false" />
+    <list default="true" id="86d871df-3bf8-4184-999d-0c2d10b72c3f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/home.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/home.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/login.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/login.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/users.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/users.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/web/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/web/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/web/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/web/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/web/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/web/logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/web/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/web/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
