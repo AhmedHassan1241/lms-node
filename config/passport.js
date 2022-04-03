@@ -1,30 +1,28 @@
-let bcrypt = require('bcrypt');
-let passport = require('passport');
-let LocalStrategy = require('passport-local').Strategy;
-const models = require("../models/index.js");
 
-module.exports = function (passport){
-    passport.use(new LocalStrategy(
-        {
-            usernameField: 'email',
-        },
-        async function (username, password, done) {
-            try {
-                await models.users.findOne({where: {email: username}}, async function (err, user) {
-                    await console.log("testttt")
+const models = require("../models/index.js");
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var bcrypt = require('bcrypt');
+
+module.exports = function (passport) {
+    passport.use(
+        new LocalStrategy(
+            {
+                usernameField: 'email',
+            },
+            function verify(username, password, cb) {
+                console.log("ttttttttttyyyyyyyyyyyyyy")
+                // let user =  models.users.findOne({where: {email: username}}, async function (err, user) {
                     if (err) {
-                        return done(err);
+                        return cb(err);
                     }
                     if (!user) {
-                        return done(null, false);
+                        return cb(null, false, {message: 'Incorrect username or password.'});
                     }
-                    console.log(username, "test")
 
-                    return done(null, user);
-                });
-            } catch (err) {
-                console.log(err)
-            }
-        }
-    ));
+
+                    return cb(null, user);
+                    // });
+                // });
+            }));
 }

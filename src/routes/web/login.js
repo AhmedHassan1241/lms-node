@@ -6,49 +6,8 @@ let LocalStrategy = require('passport-local').Strategy;
 const models = require("../../../models/index.js");
 
 
-var session = require("express-session");
-
-// const user = require('../../../models/user');
 const login_controller = require('../../controllers/login.controller')
-// const check_controller = require('../../controllers/loginCheck.controller')
 const app = express();
-// app.use((req, res, next) => {
-//     if (req.cookies.user_sid && !req.session.user) {
-//         res.clearCookie("user_sid");
-//     }
-//     next();
-// });
-// var sessionChecker = (req, res, next) => {
-//     if (req.session.user && req.cookies.user_sid) {
-//         res.redirect("/");
-//     } else {
-//         next();
-//     }
-// };
-
-// passport.use(new LocalStrategy(
-//     {
-//         usernameField: 'email',
-//     },
-//     async function (username, password, done) {
-//         try {
-//             await models.users.findOne({where: {email: username}}, async function (err, user) {
-//                 await console.log("testttt")
-//                 if (err) {
-//                     return done(err);
-//                 }
-//                 if (!user) {
-//                     return done(null, false);
-//                 }
-//                 console.log(username, "test")
-//
-//                 return done(null, user);
-//             });
-//         } catch (err) {
-//             console.log(err)
-//         }
-//     }
-// ));
 
 passport.use(new LocalStrategy(
     {
@@ -56,18 +15,18 @@ passport.use(new LocalStrategy(
     },
     async function (username, password, done) {
         try {
-            await models.users.findOne({where: {email: username}}, async function (err, user) {
-                await console.log("testttt")
-                if (err) {
-                    return done(err);
-                }
-                if (!user) {
-                    return done(null, false);
-                }
-                console.log(username, "test")
+            // check if this user with entered email exists
+            let user = await models.users.findOne({where: {email: username}});
+            if (!user) {
+                return done(null, false);
+            }
 
+            // check if found user's password match the entered one
+            const match = await bcrypt.compare(password, user.password);
+            if (match) {
                 return done(null, user);
-            });
+            }
+            return done(null, false);
         } catch (err) {
             console.log(err)
         }
@@ -75,30 +34,22 @@ passport.use(new LocalStrategy(
 ));
 
 router.get("/", login_controller.getLogin);
-router.post('/', passport.authenticate('local', {
-    successReturnToOrRedirect: '/',
-    failureRedirect: '/login',
-    failureMessage: true
-}));
+router.post('/',
+    passport.authenticate('local', {failureRedirect: '/login'}),
+    login_controller.login);
 
-router.get('/login-success', (req, res, next) => {
-    res.send('<p>You successfully logged in. --> <a href="/protected-route">Go to protected route</a></p>');
-});
-
-router.get('/login-failure', (req, res, next) => {
-    res.send('You entered the wrong password.');
-});
-
-passport.serializeUser(function (user, cb) {
+passport.serializeUser(function (user, done) {
     process.nextTick(function () {
-        cb(null, {id: user.id, username: user.username});
+        done(null, {id: user.id, name: user.name});
     });
 });
 
-passport.deserializeUser(function (user, cb) {
+passport.deserializeUser(function (user, done) {
     process.nextTick(function () {
-        return cb(null, user);
+        return done(null, user);
     });
 });
+
+router.get("/logout", login_controller.logout);
 
 module.exports = router;

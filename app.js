@@ -27,7 +27,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 6000000,
     },
   })
 );
@@ -50,12 +50,12 @@ app.use(passport.session());
 
 
 //new
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie("user_sid");
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.cookies.user_sid && !req.session.user) {
+//     res.clearCookie("user_sid");
+//   }
+//   next();
+// });
 // var hbsContent = { userName: '', loggedin: false, title: "You are not logged in today", body: "Hello World" };
 
 // middleware function to check for logged-in users

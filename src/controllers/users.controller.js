@@ -6,29 +6,30 @@ require("dotenv").config();
 const methods = {
     async getUsers(req, res) {
         try {
-            // const v = new Validator(
-            //           req.body,
-            //     {
-            //         'imageDetails': 'required|object',
-            //         'imageDetails.startPoint.x': 'required|numeric',
-            //         'imageDetails.startPoint.y': 'required|numeric',
-            //         'imageDetails.width': 'required|numeric',
-            //         'imageDetails.height': 'required|numeric',
-            //         'imageDetails.angle': 'required|numeric',
-            //     },
-            // );
-            //
-            // if (v.fails()) {
-            //     if (!(Object.keys(v.errors).length === 0 && v.errors.constructor === Object))
-            //          res.status(400).render()
-            // }
+            if (req.session.user && req.cookies.user_sid) {
+                //  console.log(req.session.user.password);
+                const stuData = await db.csisStudent.findOne({
+                    where: {uid: req.session.user.uid},
+                });
 
-            // let result =  await Service.getUsers()
-            // console.log("res", result)
-
-            res.render("users/student.ejs", {currentUser: req.session.user});
+                await db.users
+                    .findOne({where: {email: req.session.user.email}})
+                    .then(function (user) {
+                        // console.log(user);
+                        if (!user) {
+                            res.redirect("/");
+                        } else {
+                            res.render("users/student.ejs", {
+                                currentUser: req.session.user,
+                                userData: user,
+                                studentData: stuData
+                            });
+                        }
+                    });
+            } else {
+                res.redirect("/login");
+            }
         } catch (error) {
-            console.log(error.message);
             res.error(error.message, error.status);
         }
     },
@@ -44,9 +45,9 @@ const methods = {
     async saveUser(req, res) {
         try {
             const user = Service.saveUser(req, res);
-            res.redirect("users/create", {currentUser: null});
+            res.redirect("users/create");
         } catch (err) {
-            console.log(err)
+            console.log("error", err)
             res.error(err, err.status)
         }
     }

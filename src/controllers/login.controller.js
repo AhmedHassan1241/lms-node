@@ -10,30 +10,17 @@ const methods = {
     },
     async getUser(req, res) {
         try {
-            //   var username = req.body.email,
-            //       password = req.body.password;
-            //   //sequelize check user
-            //   await User.users
-            //       .findOne({ where: { email: username, password: password } })
-            //       .then(function (user) {
-            //         if (!user) {
-            //           res.redirect("/login");
-            //         } else {
-            //           req.session.user = user.dataValues;
-            //           res.redirect("/");
-            //         }
-            //       });
-            // } catch (error) {
-            //   console.log(error)
-            //   res.error(error.message, error.status);
-            // }
-
-            console.log("ttsst")
-
-
+            return res.redirect("/login");
         } catch (er) {
             console.log(er)
         }
+    },
+    async login(req, res) {
+        res.redirect('/');
+    },
+    async logout(req, res) {
+        req.logout()
+        res.redirect("/login")
     }
 
 };
